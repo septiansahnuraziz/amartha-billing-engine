@@ -2,12 +2,12 @@
 
 ## Getting Started
 
-To start using the go-pos-b2b console, follow the steps below:
+To start using the amartha-billing-engine console, follow the steps below:
 
 1. Clone the repository:
 
     ```bash
-    git clone git clone git@bitbucket.org:erafone/go-pos-b2b.git
+    git clone https://github.com/septiansahnuraziz/amartha-billing-engine.git
     ```
 
 2. Jump into the project directory:
@@ -92,8 +92,6 @@ The following commands are available in the amartha-billing-engine console:
 - Please do resolve
 
 ## Docs
-- Endpoint Dev: [https://kong.eratech.id/pos-b2b/*](https://api-dev.eraspace.com/customers/* "Click")
-- Endpoint Prod: [https://jeanne.eraspace.com/pos-b2b/*](https://sculptor.eraspace.com/customers/* "Click")
 - [Documentation and Collection API](https://erafone.atlassian.net/wiki/spaces/EM/pages/1320452130/Design+System "Click")
 
 
