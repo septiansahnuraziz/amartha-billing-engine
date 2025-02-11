@@ -1,0 +1,177 @@
+definitions:
+  entity.LoanSchedule:
+    properties:
+      amount:
+        type: number
+      created_at:
+        type: string
+      due_date:
+        type: string
+      id:
+        type: integer
+      loan_id:
+        type: integer
+      status:
+        type: string
+      week_number:
+        type: integer
+    type: object
+  entity.RequestCreateLoan:
+    properties:
+      borrowerId:
+        type: integer
+      interest:
+        type: number
+      loanAmount:
+        type: number
+      tenor:
+        type: integer
+    type: object
+  entity.RequestPayLoan:
+    properties:
+      amount:
+        type: number
+      loanId:
+        type: integer
+    type: object
+  entity.ResponseGetLoanDetail:
+    properties:
+      borrowerName:
+        type: string
+      createdAt:
+        type: string
+      id:
+        type: integer
+      interestRate:
+        type: number
+      loanAmount:
+        type: number
+      loanSchedule:
+        items:
+          $ref: '#/definitions/entity.LoanSchedule'
+        type: array
+      status:
+        type: string
+      totalAmount:
+        type: number
+      updatedAt:
+        type: string
+    type: object
+  entity.SwaggerResponseOKDTO:
+    properties:
+      appName:
+        example: Customer Miscellaneous API
+        type: string
+      build:
+        example: "1"
+        type: string
+      data: {}
+      id:
+        example: 16ad78a0-5f8a-4af0-9946-d21656e718b5
+        type: string
+      message:
+        example: Success
+        type: string
+      version:
+        example: 1.0.0
+        type: string
+    type: object
+info:
+  contact:
+    name: Amartha
+    url: amartha.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+paths:
+  /v1/loans:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 'Example: application/json'
+        in: header
+        name: Accept
+        type: string
+      - description: 'Example: application/json'
+        in: header
+        name: Content-Type
+        type: string
+      - description: Request Body
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/entity.RequestCreateLoan'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entity.SwaggerResponseOKDTO'
+      summary: Endpoint for create loan
+      tags:
+      - Loans
+  /v1/loans/{id}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 'Example: application/json'
+        in: header
+        name: Accept
+        type: string
+      - description: 'Example: application/json'
+        in: header
+        name: Content-Type
+        type: string
+      - description: Loan Id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entity.ResponseGetLoanDetail'
+      summary: Endpoint for get loan detail
+      tags:
+      - Loans
+  /v1/loans/pay:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 'Example: application/json'
+        in: header
+        name: Accept
+        type: string
+      - description: 'Example: application/json'
+        in: header
+        name: Content-Type
+        type: string
+      - description: Request Body
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/entity.RequestPayLoan'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entity.SwaggerResponseOKDTO'
+      summary: Endpoint for create pay loan
+      tags:
+      - Loans
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
